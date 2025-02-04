@@ -21,7 +21,6 @@ export function solution(arr: Array<number>): Array<number> {
   const max = Math.max(...res)
   const guys: Array<number> = []
 
-
   for (const [p, v] of Object.entries(res)) {
     if (v === max) {
         guys.push(Number(p) + 1)
