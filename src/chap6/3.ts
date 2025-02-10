@@ -31,7 +31,6 @@ export function solution(s: string) {
       }
     }
 
-
     if (arr.length === 0) { answer += 1 }
   }
 
