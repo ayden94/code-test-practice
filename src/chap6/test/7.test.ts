@@ -1,7 +1,8 @@
 import { solution } from '../7'
 
 describe("", () => {
-  test("2차원 배열 board와 인형을 집는 크레인을 작동시킨 위치가 담긴 배열 moves가 주어질 때, 크레인을 모두 작동시킨 후 사라진 인형 개수를 반환하는 solution( ) 함수를 완성하세요.", () => {
-    expect(solution([[0, 0, 0, 0, 0], [0, 0, 1, 0, 3], [0, 2, 5, 0, 1], [4, 2, 4, 4, 2], [3, 5, 1, 3, 1]], [1, 5, 3, 5, 1, 2, 1, 4])).toStrictEqual(4);
+  test("명령어 기반으로 표의 행을 선택, 삭제, 복구하는 프로그램을 작성하는 과제를 맡았습니다", () => {
+    expect(solution(8, 2, ["D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z"] )).toStrictEqual("OOOOXOOO");
+    expect(solution(8, 2, ["D 2", "C", "U 3", "C", "D 4", "C", "U 2", "Z", "Z", "U 1", "C"] )).toStrictEqual("OOXOXOOO");
   })
 })

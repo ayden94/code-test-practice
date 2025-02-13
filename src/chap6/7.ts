@@ -1,26 +1,39 @@
-export function solution(board: Array<Array<number>>, moves: Array<number>): number {
-  var answer = 0;
-  let stack: Array<number> = []
-  
-  // moves
-  for (const i of moves) {
-    for (const j in board) {
-      let place = board[j][i-1]
-      
-      if (place === 0) continue
-        else {
-          if (stack[stack.length - 1] === place) {
-            stack.pop()
-            answer+=2
-          } else {
-            stack.push(place)
-          }
-              
-        board[j][i-1] = 0
-        break
+export function solution(n: number, k: number, cmd: string[]): string {
+  const deleted: number[] = [];
+
+  const up: number[] = [...new Array(n + 2)].map((_, i) => i - 1);
+  const down: number[] = [...new Array(n + 1)].map((_, i) => i + 1);
+
+  k += 1;
+
+  for (const item of cmd) {
+    if (item[0] === "C") {
+      deleted.push(k);
+      up[down[k]] = up[k];
+      down[up[k]] = down[k];
+      k = n < down[k] ? up[k] : down[k];
+    } else if (item[0] === "Z") {
+      const restore = deleted.pop()!;
+      down[up[restore]] = restore;
+      up[down[restore]] = restore;
+    } else {
+      const [action, numStr] = item.split(" ");
+      const num = parseInt(numStr);
+      if (action === "U") {
+        for (let i = 0; i < num; i++) {
+          k = up[k];
         }
+      } else {
+        for (let i = 0; i < num; i++) {
+          k = down[k];
+        }
+      }
     }
-  }  
-  
-  return answer;
+  }
+
+  const answer: string[] = new Array(n).fill("O");
+  for (const i of deleted) {
+    answer[i - 1] = "X";
+  }
+  return answer.join("");
 }
