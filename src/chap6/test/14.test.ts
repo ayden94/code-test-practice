@@ -1,4 +1,4 @@
-import { solution } from '../7'
+import { solution } from '../14'
 
 describe("", () => {
   test("명령어 기반으로 표의 행을 선택, 삭제, 복구하는 프로그램을 작성하는 과제를 맡았습니다", () => {
