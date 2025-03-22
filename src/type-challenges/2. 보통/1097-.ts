@@ -23,15 +23,6 @@
 // type IsUnion<T, X = T> = (T extends T ? X extends T ? true : unknown : never) extends true ? false : true
 type IsUnion<T, K = T> =  [T] extends [never] ? false : T extends K ? [K] extends [T] ? false : true : never
 
-
-type T = 'a' | 'b'
-type R<T, K = T> = [T] extends [never] ? false : (T) extends K ? ['a'] extends [T] ? false : true : never
-
-type C = R<T>
-
-
-type Example<T> = T extends never ? true : false;
-type C1 = Example<never> // true
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 

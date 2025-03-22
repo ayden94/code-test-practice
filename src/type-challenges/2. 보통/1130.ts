@@ -45,7 +45,7 @@
 
 /* _____________ 여기에 코드 입력 _____________ */
 
-type ReplaceKeys<U, T, Y> = any
+type ReplaceKeys<U, T, Y> = { [X in keyof U]: X extends T ? (X extends keyof Y ? Y[X] : never) : U[X] }
 
 /* _____________ 테스트 케이스 _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
@@ -113,3 +113,14 @@ type cases = [
   > 정답 보기: https://tsch.js.org/1130/solutions
   > 다른 문제들: https://tsch.js.org/ko
 */
+
+
+
+
+type IsUnion<T, K = T> =  [T] extends [never] ? false : T extends K ? [K] extends [T] ? false : true : never
+
+
+type A = {a: "a"}
+type B = {b: "b"}
+
+type C = IsUnion<A | B>
