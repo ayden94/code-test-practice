@@ -62,6 +62,12 @@ type MinusOne<T extends number> = `${T}` extends `-${infer AbsT}`
   // if `T` is positive - same as before
   : Reverse<RevMinusOne<Reverse<`${T}`>>> extends `${infer Res extends number}` ? Res : 0
 
+type PlusOne<T extends number> = `${T}` extends `-${infer AbsT}`
+? AbsT extends "1"
+  ? 0 // -1 + 1 = 0 특수 케이스
+  : `-${Reverse<RevMinusOne<Reverse<AbsT>>>}` extends `${infer Res extends number}` ? Res : never
+: Reverse<RevPlusOne<Reverse<`${T}`>>> extends `${infer Res extends number}` ? Res : never
+
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 
