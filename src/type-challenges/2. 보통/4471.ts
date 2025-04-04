@@ -19,6 +19,12 @@ type Zip<A extends any[], B extends any[], L extends any[] = []> = L['length'] e
   ? L
   : Zip<A, B, [...L, [A[L['length']], B[L['length']]]]>
 
+// type Zip<T, U> = T extends [infer TF, ...infer TR]
+// ? U extends [infer UF, ...infer UR]
+//   ? [[TF, UF], ...Zip<TR, UR>]
+//   : []
+// : [];
+
 /* _____________ Test Cases _____________ */
 import type { Equal, Expect } from '@type-challenges/utils'
 
